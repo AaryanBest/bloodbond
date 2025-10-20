@@ -4,8 +4,30 @@ import { useQuery } from "@tanstack/react-query";
 import { supabase } from "@/integrations/supabase/client";
 import { Heart } from "lucide-react";
 
+// Mockup stories data
+const mockupStories = [
+  {
+    id: "1",
+    title: "A Second Chance at Life",
+    excerpt: "When Sarah needed an emergency transfusion, BloodSync connected her to a donor in minutes. Today, she's back with her family, living proof of how every drop counts.",
+    published: true
+  },
+  {
+    id: "2",
+    title: "Community Heroes",
+    excerpt: "Meet the donors who've made it their mission to be available whenever needed. From regular donors to first-time heroes, these stories inspire us all.",
+    published: true
+  },
+  {
+    id: "3",
+    title: "Hospital Partnership Success",
+    excerpt: "How one hospital reduced emergency wait times by 60% using BloodSync. Real-time inventory tracking and instant donor alerts changed everything.",
+    published: true
+  }
+];
+
 export const Stories = () => {
-  const { data: stories } = useQuery({
+  const { data: stories, isLoading } = useQuery({
     queryKey: ["stories"],
     queryFn: async () => {
       const { data, error } = await supabase
@@ -19,6 +41,9 @@ export const Stories = () => {
       return data;
     },
   });
+
+  // Use mockup data if no stories from database
+  const displayStories = stories && stories.length > 0 ? stories : mockupStories;
 
   return (
     <section className="py-24 px-4 bg-gradient-to-b from-background to-muted/20 relative overflow-hidden">
@@ -42,71 +67,22 @@ export const Stories = () => {
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          {stories && stories.length > 0 ? (
-            stories.map((story) => (
-              <Card key={story.id} className="p-8 card-hover border-0 bg-white/80 backdrop-blur-sm group">
-                <div className="mb-4 p-3 bg-primary/10 rounded-xl w-fit">
-                  <Heart className="h-6 w-6 text-primary" />
-                </div>
-                <h3 className="text-2xl font-bold mb-4 group-hover:text-primary transition-colors">
-                  {story.title}
-                </h3>
-                <p className="text-muted-foreground mb-6 line-clamp-3 leading-relaxed">
-                  {story.excerpt}
-                </p>
-                <Button variant="outline" className="w-full" size="lg">
-                  Read More
-                </Button>
-              </Card>
-            ))
-          ) : (
-            <>
-              <Card className="p-8 card-hover border-0 bg-white/80 backdrop-blur-sm group">
-                <div className="mb-4 p-3 bg-primary/10 rounded-xl w-fit">
-                  <Heart className="h-6 w-6 text-primary" />
-                </div>
-                <h3 className="text-2xl font-bold mb-4 group-hover:text-primary transition-colors">
-                  A Second Chance at Life
-                </h3>
-                <p className="text-muted-foreground mb-6 leading-relaxed">
-                  When Sarah needed an emergency transfusion, BloodSync connected her to a donor in minutes...
-                </p>
-                <Button variant="outline" className="w-full" size="lg">
-                  Read More
-                </Button>
-              </Card>
-
-              <Card className="p-8 card-hover border-0 bg-white/80 backdrop-blur-sm group">
-                <div className="mb-4 p-3 bg-primary/10 rounded-xl w-fit">
-                  <Heart className="h-6 w-6 text-primary" />
-                </div>
-                <h3 className="text-2xl font-bold mb-4 group-hover:text-primary transition-colors">
-                  Community Heroes
-                </h3>
-                <p className="text-muted-foreground mb-6 leading-relaxed">
-                  Meet the donors who've made it their mission to be available whenever needed...
-                </p>
-                <Button variant="outline" className="w-full" size="lg">
-                  Read More
-                </Button>
-              </Card>
-
-              <Card className="p-8 card-hover border-0 bg-white/80 backdrop-blur-sm group">
-                <div className="mb-4 p-3 bg-primary/10 rounded-xl w-fit">
-                  <Heart className="h-6 w-6 text-primary" />
-                </div>
-                <h3 className="text-2xl font-bold mb-4 group-hover:text-primary transition-colors">
-                  Hospital Partnership Success
-                </h3>
-                <p className="text-muted-foreground mb-6 leading-relaxed">
-                  How one hospital reduced emergency wait times by 60% using BloodSync...
-                </p>
-                <Button variant="outline" className="w-full" size="lg">
-                  Read More
-                </Button>
-              </Card>
-            </>
-          )}
+          {displayStories.map((story) => (
+            <Card key={story.id} className="p-8 card-hover border-0 bg-white/80 backdrop-blur-sm group">
+              <div className="mb-4 p-3 bg-primary/10 rounded-xl w-fit">
+                <Heart className="h-6 w-6 text-primary" />
+              </div>
+              <h3 className="text-2xl font-bold mb-4 group-hover:text-primary transition-colors">
+                {story.title}
+              </h3>
+              <p className="text-muted-foreground mb-6 line-clamp-3 leading-relaxed">
+                {story.excerpt}
+              </p>
+              <Button variant="outline" className="w-full" size="lg">
+                Read More
+              </Button>
+            </Card>
+          ))}
         </div>
       </div>
     </section>
