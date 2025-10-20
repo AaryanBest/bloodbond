@@ -80,38 +80,50 @@ const Emergency = () => {
   return (
     <div className="min-h-screen flex flex-col">
       <Navbar />
-      <main className="flex-1 py-20 px-4">
-        <div className="container mx-auto max-w-2xl">
-          <div className="text-center mb-12">
-            <div className="flex justify-center mb-4">
-              <AlertCircle className="h-16 w-16 text-primary" />
+      <main className="flex-1 pt-32 pb-24 px-4 bg-gradient-to-b from-destructive/5 to-background relative overflow-hidden">
+        {/* Background Elements */}
+        <div className="absolute top-20 right-10 w-96 h-96 bg-destructive/10 rounded-full blur-3xl -z-10" />
+        <div className="absolute bottom-20 left-10 w-96 h-96 bg-destructive/5 rounded-full blur-3xl -z-10" />
+        
+        <div className="container mx-auto max-w-3xl">
+          <div className="text-center mb-16">
+            <div className="flex justify-center mb-6">
+              <div className="relative">
+                <div className="absolute inset-0 bg-destructive/20 rounded-full blur-xl animate-pulse" />
+                <div className="relative p-6 bg-gradient-to-br from-destructive/10 to-destructive/20 rounded-3xl border-2 border-destructive/30">
+                  <AlertCircle className="h-16 w-16 text-destructive" />
+                </div>
+              </div>
             </div>
-            <h1 className="mb-4">Emergency Blood Request</h1>
-            <p className="text-lg text-muted-foreground">
-              Submit your urgent request and we'll instantly notify nearby donors and hospitals
+            <div className="inline-block mb-4 px-6 py-2 bg-destructive/10 rounded-full border border-destructive/20">
+              <span className="text-sm font-semibold text-destructive">Immediate Response</span>
+            </div>
+            <h1 className="mb-6">Emergency Blood Request</h1>
+            <p className="text-xl text-muted-foreground max-w-2xl mx-auto leading-relaxed">
+              Submit your urgent request and we'll instantly notify nearby donors and hospitals. Every second counts.
             </p>
           </div>
 
-          <Card className="p-8">
-            <form onSubmit={handleSubmit} className="space-y-6">
-              <div className="space-y-2">
-                <Label htmlFor="blood-type">Required Blood Type *</Label>
+          <Card className="p-10 glass-card border-0 shadow-2xl">
+            <form onSubmit={handleSubmit} className="space-y-7">
+              <div className="space-y-3">
+                <Label htmlFor="blood-type" className="text-base font-semibold">Required Blood Type *</Label>
                 <Select value={bloodType} onValueChange={setBloodType} required>
-                  <SelectTrigger id="blood-type">
+                  <SelectTrigger id="blood-type" className="h-12 border-2">
                     <SelectValue placeholder="Select blood type" />
                   </SelectTrigger>
                   <SelectContent>
                     {bloodTypes.map((type) => (
                       <SelectItem key={type} value={type}>
-                        {type}
+                        <span className="font-semibold">{type}</span>
                       </SelectItem>
                     ))}
                   </SelectContent>
                 </Select>
               </div>
 
-              <div className="space-y-2">
-                <Label htmlFor="units">Units Needed *</Label>
+              <div className="space-y-3">
+                <Label htmlFor="units" className="text-base font-semibold">Units Needed *</Label>
                 <Input
                   id="units"
                   type="number"
@@ -119,43 +131,47 @@ const Emergency = () => {
                   value={unitsNeeded}
                   onChange={(e) => setUnitsNeeded(e.target.value)}
                   required
+                  className="h-12 border-2"
                 />
               </div>
 
-              <div className="space-y-2">
-                <Label htmlFor="patient">Patient Name *</Label>
+              <div className="space-y-3">
+                <Label htmlFor="patient" className="text-base font-semibold">Patient Name *</Label>
                 <Input
                   id="patient"
                   placeholder="Enter patient name"
                   value={patientName}
                   onChange={(e) => setPatientName(e.target.value)}
                   required
+                  className="h-12 border-2"
                 />
               </div>
 
-              <div className="space-y-2">
-                <Label htmlFor="hospital">Hospital Name</Label>
+              <div className="space-y-3">
+                <Label htmlFor="hospital" className="text-base font-semibold">Hospital Name</Label>
                 <Input
                   id="hospital"
                   placeholder="Enter hospital name (if applicable)"
                   value={hospitalName}
                   onChange={(e) => setHospitalName(e.target.value)}
+                  className="h-12 border-2"
                 />
               </div>
 
-              <div className="space-y-2">
-                <Label htmlFor="city">City *</Label>
+              <div className="space-y-3">
+                <Label htmlFor="city" className="text-base font-semibold">City *</Label>
                 <Input
                   id="city"
                   placeholder="Enter city"
                   value={city}
                   onChange={(e) => setCity(e.target.value)}
                   required
+                  className="h-12 border-2"
                 />
               </div>
 
-              <div className="space-y-2">
-                <Label htmlFor="phone">Contact Phone *</Label>
+              <div className="space-y-3">
+                <Label htmlFor="phone" className="text-base font-semibold">Contact Phone *</Label>
                 <Input
                   id="phone"
                   type="tel"
@@ -163,11 +179,12 @@ const Emergency = () => {
                   value={contactPhone}
                   onChange={(e) => setContactPhone(e.target.value)}
                   required
+                  className="h-12 border-2"
                 />
               </div>
 
-              <div className="space-y-2">
-                <Label htmlFor="urgency">Urgency Details *</Label>
+              <div className="space-y-3">
+                <Label htmlFor="urgency" className="text-base font-semibold">Urgency Details *</Label>
                 <Textarea
                   id="urgency"
                   placeholder="Describe the urgency (e.g., surgery scheduled, accident victim, etc.)"
@@ -175,17 +192,23 @@ const Emergency = () => {
                   onChange={(e) => setUrgency(e.target.value)}
                   required
                   rows={4}
+                  className="border-2 resize-none"
                 />
               </div>
 
-              <Button type="submit" className="w-full" size="lg">
+              <Button 
+                type="submit" 
+                className="w-full shadow-[0_0_24px_rgba(239,68,68,0.4)] hover:shadow-[0_0_36px_rgba(239,68,68,0.6)]" 
+                size="xl" 
+                variant="destructive"
+              >
                 Submit Emergency Request
               </Button>
             </form>
           </Card>
 
-          <Card className="mt-8 p-6 bg-muted/50 text-center">
-            <p className="text-sm text-muted-foreground">
+          <Card className="mt-8 p-6 glass-card border-0 text-center">
+            <p className="text-muted-foreground leading-relaxed">
               Your request will be instantly shared with nearby donors and hospitals. 
               We'll contact you as soon as blood is located.
             </p>

@@ -102,23 +102,34 @@ const Auth = () => {
   const defaultTab = searchParams.get("mode") === "signup" ? "signup" : "signin";
 
   return (
-    <div className="min-h-screen flex items-center justify-center px-4 py-12">
-      <Card className="w-full max-w-md p-8">
-        <div className="flex items-center justify-center gap-2 mb-8">
-          <Droplet className="h-8 w-8 text-primary" fill="currentColor" />
-          <h2 className="text-3xl font-bold">BloodSync</h2>
+    <div className="min-h-screen flex items-center justify-center px-4 py-12 bg-gradient-to-br from-muted/30 via-background to-primary/5 relative overflow-hidden">
+      {/* Background Elements */}
+      <div className="absolute top-20 right-10 w-96 h-96 bg-primary/10 rounded-full blur-3xl -z-10" />
+      <div className="absolute bottom-20 left-10 w-96 h-96 bg-primary-glow/10 rounded-full blur-3xl -z-10" />
+      
+      <Card className="w-full max-w-md p-10 glass-card border-0 shadow-2xl">
+        <div className="text-center mb-10">
+          <div className="flex justify-center mb-6">
+            <div className="p-4 bg-gradient-to-br from-primary/10 to-primary-glow/10 rounded-2xl border border-primary/20">
+              <Droplet className="h-12 w-12 text-primary" fill="currentColor" />
+            </div>
+          </div>
+          <h2 className="text-4xl font-bold mb-3 bg-gradient-to-r from-primary to-primary-glow bg-clip-text text-transparent">
+            BloodSync
+          </h2>
+          <p className="text-muted-foreground">Join our life-saving community</p>
         </div>
 
         <Tabs defaultValue={defaultTab} className="w-full">
-          <TabsList className="grid w-full grid-cols-2 mb-6">
-            <TabsTrigger value="signin">Sign In</TabsTrigger>
-            <TabsTrigger value="signup">Sign Up</TabsTrigger>
+          <TabsList className="grid w-full grid-cols-2 mb-8 h-12 bg-muted/50">
+            <TabsTrigger value="signin" className="text-base font-semibold">Sign In</TabsTrigger>
+            <TabsTrigger value="signup" className="text-base font-semibold">Sign Up</TabsTrigger>
           </TabsList>
 
           <TabsContent value="signin">
-            <form onSubmit={handleSignIn} className="space-y-4">
-              <div className="space-y-2">
-                <Label htmlFor="signin-email">Email</Label>
+            <form onSubmit={handleSignIn} className="space-y-5">
+              <div className="space-y-3">
+                <Label htmlFor="signin-email" className="text-base font-semibold">Email</Label>
                 <Input
                   id="signin-email"
                   type="email"
@@ -126,11 +137,12 @@ const Auth = () => {
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   required
+                  className="h-12 border-2"
                 />
               </div>
 
-              <div className="space-y-2">
-                <Label htmlFor="signin-password">Password</Label>
+              <div className="space-y-3">
+                <Label htmlFor="signin-password" className="text-base font-semibold">Password</Label>
                 <Input
                   id="signin-password"
                   type="password"
@@ -138,30 +150,32 @@ const Auth = () => {
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
                   required
+                  className="h-12 border-2"
                 />
               </div>
 
-              <Button type="submit" className="w-full" disabled={loading}>
+              <Button type="submit" className="w-full" size="xl" variant="glow" disabled={loading}>
                 {loading ? "Signing in..." : "Sign In"}
               </Button>
             </form>
           </TabsContent>
 
           <TabsContent value="signup">
-            <form onSubmit={handleSignUp} className="space-y-4">
-              <div className="space-y-2">
-                <Label htmlFor="signup-name">Full Name</Label>
+            <form onSubmit={handleSignUp} className="space-y-5">
+              <div className="space-y-3">
+                <Label htmlFor="signup-name" className="text-base font-semibold">Full Name</Label>
                 <Input
                   id="signup-name"
                   placeholder="John Doe"
                   value={fullName}
                   onChange={(e) => setFullName(e.target.value)}
                   required
+                  className="h-12 border-2"
                 />
               </div>
 
-              <div className="space-y-2">
-                <Label htmlFor="signup-email">Email</Label>
+              <div className="space-y-3">
+                <Label htmlFor="signup-email" className="text-base font-semibold">Email</Label>
                 <Input
                   id="signup-email"
                   type="email"
@@ -169,11 +183,12 @@ const Auth = () => {
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   required
+                  className="h-12 border-2"
                 />
               </div>
 
-              <div className="space-y-2">
-                <Label htmlFor="signup-password">Password</Label>
+              <div className="space-y-3">
+                <Label htmlFor="signup-password" className="text-base font-semibold">Password</Label>
                 <Input
                   id="signup-password"
                   type="password"
@@ -181,23 +196,28 @@ const Auth = () => {
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
                   required
+                  className="h-12 border-2"
                 />
               </div>
 
-              <div className="space-y-2">
-                <Label htmlFor="role">I am a</Label>
+              <div className="space-y-3">
+                <Label htmlFor="role" className="text-base font-semibold">I am a</Label>
                 <Select value={role} onValueChange={setRole}>
-                  <SelectTrigger id="role">
+                  <SelectTrigger id="role" className="h-12 border-2">
                     <SelectValue />
                   </SelectTrigger>
                   <SelectContent>
-                    <SelectItem value="donor">Donor</SelectItem>
-                    <SelectItem value="hospital">Hospital Representative</SelectItem>
+                    <SelectItem value="donor">
+                      <span className="font-semibold">Donor</span>
+                    </SelectItem>
+                    <SelectItem value="hospital">
+                      <span className="font-semibold">Hospital Representative</span>
+                    </SelectItem>
                   </SelectContent>
                 </Select>
               </div>
 
-              <Button type="submit" className="w-full" disabled={loading}>
+              <Button type="submit" className="w-full" size="xl" variant="glow" disabled={loading}>
                 {loading ? "Creating account..." : "Create Account"}
               </Button>
             </form>

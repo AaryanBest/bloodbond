@@ -59,26 +59,29 @@ export const FindBlood = () => {
   };
 
   return (
-    <section className="py-20 px-4 bg-muted/30">
-      <div className="container mx-auto max-w-4xl">
-        <div className="text-center mb-12">
-          <h2 className="mb-4">Find Blood Availability</h2>
-          <p className="text-lg text-muted-foreground">
-            Search for available blood units at hospitals near you
+    <section className="py-24 px-4 bg-gradient-to-b from-background to-muted/20">
+      <div className="container mx-auto max-w-5xl">
+        <div className="text-center mb-16">
+          <div className="inline-block mb-4 px-6 py-2 bg-primary/10 rounded-full border border-primary/20">
+            <span className="text-sm font-semibold text-primary">Quick Search</span>
+          </div>
+          <h2 className="mb-6">Find Blood Availability</h2>
+          <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
+            Search for available blood units at hospitals near you in real-time
           </p>
         </div>
 
         {/* Search Form */}
-        <Card className="p-8 mb-8">
+        <Card className="p-8 mb-10 glass-card border-0">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
             <Select value={selectedBloodType} onValueChange={setSelectedBloodType}>
-              <SelectTrigger>
+              <SelectTrigger className="h-12 border-2 focus:border-primary">
                 <SelectValue placeholder="Select Blood Type" />
               </SelectTrigger>
               <SelectContent>
                 {bloodTypes.map((type) => (
                   <SelectItem key={type} value={type}>
-                    {type}
+                    <span className="font-semibold">{type}</span>
                   </SelectItem>
                 ))}
               </SelectContent>
@@ -88,9 +91,15 @@ export const FindBlood = () => {
               placeholder="Enter City"
               value={city}
               onChange={(e) => setCity(e.target.value)}
+              className="h-12 border-2 focus:border-primary"
             />
 
-            <Button onClick={handleSearch} className="w-full">
+            <Button 
+              onClick={handleSearch} 
+              className="w-full h-12"
+              size="lg"
+              variant="glow"
+            >
               Search
             </Button>
           </div>
@@ -98,31 +107,39 @@ export const FindBlood = () => {
 
         {/* Results */}
         {inventory && inventory.length > 0 && (
-          <div className="space-y-4">
-            <h3 className="text-2xl font-bold mb-6 text-center">
+          <div className="space-y-5">
+            <h3 className="text-3xl font-bold mb-8 text-center">
               Available Blood Units
             </h3>
             {inventory.map((item: any) => (
-              <Card key={item.id} className="p-6 hover:shadow-lg transition-shadow">
-                <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+              <Card key={item.id} className="p-8 card-hover border-0 bg-white/80 backdrop-blur-sm">
+                <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-6">
                   <div className="flex-1">
-                    <h4 className="text-xl font-bold mb-2">{item.hospitals.name}</h4>
-                    <div className="flex items-center gap-2 text-muted-foreground mb-1">
-                      <MapPin className="h-4 w-4" />
-                      <span>{item.hospitals.address}, {item.hospitals.city}</span>
-                    </div>
-                    <div className="flex items-center gap-2 text-muted-foreground">
-                      <Phone className="h-4 w-4" />
-                      <span>{item.hospitals.phone}</span>
+                    <h4 className="text-2xl font-bold mb-4 text-foreground">{item.hospitals.name}</h4>
+                    <div className="space-y-2">
+                      <div className="flex items-center gap-3 text-muted-foreground">
+                        <div className="p-2 bg-primary/10 rounded-lg">
+                          <MapPin className="h-4 w-4 text-primary" />
+                        </div>
+                        <span className="font-medium">{item.hospitals.address}, {item.hospitals.city}</span>
+                      </div>
+                      <div className="flex items-center gap-3 text-muted-foreground">
+                        <div className="p-2 bg-primary/10 rounded-lg">
+                          <Phone className="h-4 w-4 text-primary" />
+                        </div>
+                        <span className="font-medium">{item.hospitals.phone}</span>
+                      </div>
                     </div>
                   </div>
                   <div className="text-center md:text-right">
-                    <p className="text-3xl font-bold text-primary mb-1">
-                      {item.units_available}
-                    </p>
-                    <p className="text-sm text-muted-foreground">
-                      Units of {item.blood_type}
-                    </p>
+                    <div className="inline-block p-6 bg-gradient-to-br from-primary/10 to-primary-glow/10 rounded-2xl border-2 border-primary/20">
+                      <p className="text-5xl font-bold bg-gradient-to-r from-primary to-primary-glow bg-clip-text text-transparent mb-2">
+                        {item.units_available}
+                      </p>
+                      <p className="text-sm font-semibold text-muted-foreground">
+                        Units of {item.blood_type}
+                      </p>
+                    </div>
                   </div>
                 </div>
               </Card>
@@ -131,10 +148,10 @@ export const FindBlood = () => {
         )}
 
         {inventory && inventory.length === 0 && (
-          <Card className="p-12 text-center">
-            <p className="text-lg text-muted-foreground">
+          <Card className="p-16 text-center border-0 bg-white/60 backdrop-blur-sm">
+            <p className="text-xl text-muted-foreground mb-6">
               No blood units found matching your search. Try different criteria or{" "}
-              <a href="/emergency" className="text-primary underline">
+              <a href="/emergency" className="text-primary font-semibold underline hover:no-underline">
                 submit an emergency request
               </a>
               .

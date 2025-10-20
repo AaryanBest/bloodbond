@@ -75,46 +75,50 @@ export const DonatePage = () => {
   };
 
   return (
-    <section className="py-20 px-4">
+    <section className="py-24 px-4 bg-gradient-to-b from-muted/20 to-background">
       <div className="container mx-auto max-w-2xl">
-        <div className="text-center mb-12">
-          <h2 className="mb-4">Become a Donor</h2>
-          <p className="text-lg text-muted-foreground max-w-xl mx-auto">
-            Become a donor and help save lives near you. It only takes 15 minutes to make a difference.
+        <div className="text-center mb-16">
+          <div className="inline-block mb-4 px-6 py-2 bg-primary/10 rounded-full border border-primary/20">
+            <span className="text-sm font-semibold text-primary">Join Our Mission</span>
+          </div>
+          <h2 className="mb-6">Become a Donor</h2>
+          <p className="text-xl text-muted-foreground max-w-xl mx-auto leading-relaxed">
+            Register today and help save lives near you. It only takes 15 minutes to make a lifelong difference.
           </p>
         </div>
 
-        <Card className="p-8">
-          <form onSubmit={handleSubmit} className="space-y-6">
-            <div className="space-y-2">
-              <Label htmlFor="blood-type">Blood Type *</Label>
+        <Card className="p-10 glass-card border-0">
+          <form onSubmit={handleSubmit} className="space-y-7">
+            <div className="space-y-3">
+              <Label htmlFor="blood-type" className="text-base font-semibold">Blood Type *</Label>
               <Select value={bloodType} onValueChange={setBloodType} required>
-                <SelectTrigger id="blood-type">
+                <SelectTrigger id="blood-type" className="h-12 border-2">
                   <SelectValue placeholder="Select your blood type" />
                 </SelectTrigger>
                 <SelectContent>
                   {bloodTypes.map((type) => (
                     <SelectItem key={type} value={type}>
-                      {type}
+                      <span className="font-semibold">{type}</span>
                     </SelectItem>
                   ))}
                 </SelectContent>
               </Select>
             </div>
 
-            <div className="space-y-2">
-              <Label htmlFor="city">City *</Label>
+            <div className="space-y-3">
+              <Label htmlFor="city" className="text-base font-semibold">City *</Label>
               <Input
                 id="city"
                 placeholder="Enter your city"
                 value={city}
                 onChange={(e) => setCity(e.target.value)}
                 required
+                className="h-12 border-2"
               />
             </div>
 
-            <div className="space-y-2">
-              <Label htmlFor="phone">Contact Number *</Label>
+            <div className="space-y-3">
+              <Label htmlFor="phone" className="text-base font-semibold">Contact Number *</Label>
               <Input
                 id="phone"
                 type="tel"
@@ -122,21 +126,22 @@ export const DonatePage = () => {
                 value={phone}
                 onChange={(e) => setPhone(e.target.value)}
                 required
+                className="h-12 border-2"
               />
             </div>
 
-            <div className="space-y-2">
-              <Label>Last Donation Date (Optional)</Label>
+            <div className="space-y-3">
+              <Label className="text-base font-semibold">Last Donation Date (Optional)</Label>
               <Popover>
                 <PopoverTrigger asChild>
                   <Button
                     variant="outline"
                     className={cn(
-                      "w-full justify-start text-left font-normal",
+                      "w-full h-12 justify-start text-left font-normal border-2",
                       !lastDonation && "text-muted-foreground"
                     )}
                   >
-                    <CalendarIcon className="mr-2 h-4 w-4" />
+                    <CalendarIcon className="mr-2 h-5 w-5" />
                     {lastDonation ? format(lastDonation, "PPP") : "Select date"}
                   </Button>
                 </PopoverTrigger>
@@ -153,7 +158,7 @@ export const DonatePage = () => {
               </Popover>
             </div>
 
-            <Button type="submit" className="w-full" size="lg">
+            <Button type="submit" className="w-full" size="xl" variant="glow">
               Register as Donor
             </Button>
           </form>

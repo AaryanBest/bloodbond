@@ -2,42 +2,73 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
-All colors MUST be HSL.
-*/
+/* BloodSync Premium Design System - Modern Healthcare Platform */
 
 @layer base {
   :root {
-    /* BloodSync Design System - Healthcare Red & Deep Navy */
-    --background: 25 100% 98%;  /* Alabaster #FEF9F3 */
-    --foreground: 215 25% 17%;  /* Deep Navy #1E293B */
-
+    /* Premium Color Palette */
+    --background: 0 0% 100%;
+    --foreground: 222 47% 11%;
+    
     --card: 0 0% 100%;
-    --card-foreground: 215 25% 17%;
-
+    --card-foreground: 222 47% 11%;
+    
     --popover: 0 0% 100%;
-    --popover-foreground: 215 25% 17%;
-
-    --primary: 0 70% 50%;  /* Healthcare Red #D32F2F */
+    --popover-foreground: 222 47% 11%;
+    
+    --primary: 0 84% 60%;
     --primary-foreground: 0 0% 100%;
-
-    --secondary: 215 25% 17%;  /* Deep Navy */
+    --primary-glow: 0 100% 70%;
+    
+    --secondary: 222 47% 11%;
     --secondary-foreground: 0 0% 100%;
-
-    --muted: 25 30% 95%;
-    --muted-foreground: 215 15% 45%;
-
-    --accent: 0 70% 50%;
+    
+    --muted: 210 40% 96%;
+    --muted-foreground: 215 16% 47%;
+    
+    --accent: 0 84% 60%;
     --accent-foreground: 0 0% 100%;
-
-    --destructive: 0 70% 50%;
+    
+    --destructive: 0 84% 60%;
     --destructive-foreground: 0 0% 100%;
-
-    --border: 25 20% 90%;
-    --input: 25 20% 90%;
-    --ring: 0 70% 50%;
-
-    --radius: 0.75rem;
+    
+    --border: 214 32% 91%;
+    --input: 214 32% 91%;
+    --ring: 0 84% 60%;
+    
+    --radius: 1rem;
+    
+    /* Premium Gradients */
+    --gradient-primary: linear-gradient(135deg, hsl(0 84% 60%) 0%, hsl(0 100% 70%) 100%);
+    --gradient-secondary: linear-gradient(135deg, hsl(222 47% 11%) 0%, hsl(222 47% 20%) 100%);
+    --gradient-accent: linear-gradient(135deg, hsl(0 84% 60%) 0%, hsl(340 82% 52%) 100%);
+    --gradient-hero: linear-gradient(180deg, hsl(0 0% 100%) 0%, hsl(210 40% 98%) 100%);
+    --gradient-card: linear-gradient(135deg, hsl(0 0% 100%) 0%, hsl(210 40% 99%) 100%);
+    
+    /* Premium Shadows */
+    --shadow-sm: 0 2px 8px -2px hsl(222 47% 11% / 0.08);
+    --shadow-md: 0 4px 16px -4px hsl(222 47% 11% / 0.12);
+    --shadow-lg: 0 12px 32px -8px hsl(222 47% 11% / 0.16);
+    --shadow-xl: 0 20px 48px -12px hsl(222 47% 11% / 0.24);
+    --shadow-glow: 0 0 32px hsl(0 84% 60% / 0.3);
+    --shadow-glow-lg: 0 0 48px hsl(0 84% 60% / 0.4);
+    
+    /* Animations */
+    --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-bounce: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  }
+  
+  .dark {
+    --background: 222 47% 11%;
+    --foreground: 210 40% 98%;
+    --card: 222 47% 14%;
+    --card-foreground: 210 40% 98%;
+    --popover: 222 47% 14%;
+    --popover-foreground: 210 40% 98%;
+    --muted: 217 33% 17%;
+    --muted-foreground: 215 20% 65%;
+    --border: 217 33% 17%;
+    --input: 217 33% 17%;
   }
 }
 
@@ -45,24 +76,86 @@ All colors MUST be HSL.
   * {
     @apply border-border;
   }
-
+  
   body {
     @apply bg-background text-foreground font-sans antialiased;
+    font-feature-settings: "rlig" 1, "calt" 1;
   }
-
+  
   h1, h2, h3, h4, h5, h6 {
-    @apply font-bold;
+    @apply font-bold tracking-tight;
   }
-
+  
   h1 {
-    @apply text-4xl md:text-5xl lg:text-6xl;
+    @apply text-5xl md:text-6xl lg:text-7xl;
+    background: var(--gradient-primary);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
   }
-
+  
   h2 {
     @apply text-3xl md:text-4xl lg:text-5xl;
   }
-
+  
   h3 {
     @apply text-2xl md:text-3xl lg:text-4xl;
+  }
+}
+
+@layer components {
+  .glass-card {
+    @apply bg-white/80 backdrop-blur-xl border border-white/20;
+    box-shadow: var(--shadow-lg);
+  }
+  
+  .gradient-text {
+    background: var(--gradient-primary);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  
+  .btn-glow {
+    box-shadow: var(--shadow-glow);
+    transition: var(--transition-smooth);
+  }
+  
+  .btn-glow:hover {
+    box-shadow: var(--shadow-glow-lg);
+    transform: translateY(-2px);
+  }
+  
+  .card-hover {
+    transition: var(--transition-smooth);
+  }
+  
+  .card-hover:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-xl);
+  }
+  
+  .floating-animation {
+    animation: floating 6s ease-in-out infinite;
+  }
+  
+  @keyframes floating {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-20px); }
+  }
+  
+  .fade-in-up {
+    animation: fadeInUp 0.6s ease-out;
+  }
+  
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(30px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
   }
 }
