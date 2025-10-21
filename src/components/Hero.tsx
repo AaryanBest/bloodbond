@@ -2,12 +2,9 @@ import { Button } from "@/components/ui/button";
 import { useNavigate } from "react-router-dom";
 import { ArrowRight, Heart, Users, Building2 } from "lucide-react";
 import heroImage from "@/assets/hero-donor.jpg";
-
 export const Hero = () => {
   const navigate = useNavigate();
-
-  return (
-    <section className="relative pt-32 pb-20 px-6 overflow-hidden bg-gradient-to-br from-background via-muted/20 to-background">
+  return <section className="relative pt-32 pb-20 px-6 overflow-hidden bg-gradient-to-br from-background via-muted/20 to-background">
       {/* Subtle Background Elements */}
       <div className="absolute top-40 right-20 w-[500px] h-[500px] bg-primary/5 rounded-full blur-3xl -z-10" />
       <div className="absolute bottom-20 left-20 w-[400px] h-[400px] bg-accent/5 rounded-full blur-3xl -z-10" />
@@ -32,20 +29,11 @@ export const Hero = () => {
             </p>
 
             <div className="flex flex-col sm:flex-row gap-4 pt-4">
-              <Button
-                size="lg"
-                onClick={() => navigate("/find-blood")}
-                className="group bg-primary hover:bg-primary-dark text-lg px-8 py-6 shadow-lg hover:shadow-xl transition-all"
-              >
+              <Button size="lg" onClick={() => navigate("/find-blood")} className="group bg-primary hover:bg-primary-dark text-lg px-8 py-6 shadow-lg hover:shadow-xl transition-all">
                 Find Blood Now
                 <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
               </Button>
-              <Button
-                size="lg"
-                variant="outline"
-                onClick={() => navigate("/donate")}
-                className="group border-2 border-primary/20 hover:border-primary/40 text-lg px-8 py-6 bg-white/50 backdrop-blur-sm"
-              >
+              <Button size="lg" variant="outline" onClick={() => navigate("/donate")} className="group border-2 border-primary/20 hover:border-primary/40 text-lg px-8 py-6 bg-white/50 backdrop-blur-sm">
                 Become a Donor
                 <Heart className="ml-2 h-5 w-5 group-hover:scale-110 transition-transform" />
               </Button>
@@ -78,31 +66,18 @@ export const Hero = () => {
           </div>
 
           {/* Right - Image */}
-          <div className="relative fade-in-up lg:order-last" style={{ animationDelay: "0.2s" }}>
+          <div className="relative fade-in-up lg:order-last" style={{
+          animationDelay: "0.2s"
+        }}>
             <div className="relative rounded-3xl overflow-hidden shadow-2xl h-[600px]">
-              <img 
-                src={heroImage} 
-                alt="Woman donating blood in modern medical facility" 
-                className="w-full h-full object-cover object-center"
-              />
+              <img src={heroImage} alt="Woman donating blood in modern medical facility" className="w-full h-full object-cover object-center" />
               <div className="absolute inset-0 bg-gradient-to-t from-primary/10 to-transparent" />
             </div>
             
             {/* Floating Badge */}
-            <div className="absolute -bottom-6 -left-6 bg-white rounded-2xl shadow-xl p-6 border border-border/50 backdrop-blur-sm">
-              <div className="flex items-center gap-4">
-                <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center">
-                  <Heart className="w-6 h-6 text-primary animate-pulse" />
-                </div>
-                <div>
-                  <p className="text-2xl font-bold text-foreground">98%</p>
-                  <p className="text-sm text-muted-foreground">Success Rate</p>
-                </div>
-              </div>
-            </div>
+            
           </div>
         </div>
       </div>
-    </section>
-  );
+    </section>;
 };
