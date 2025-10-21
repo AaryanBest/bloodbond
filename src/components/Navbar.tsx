@@ -32,46 +32,42 @@ export const Navbar = () => {
 
   return (
     <nav
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
         isScrolled 
-          ? "bg-white/90 backdrop-blur-2xl shadow-lg border-b border-white/20" 
-          : "bg-transparent"
+          ? "bg-white/90 backdrop-blur-lg shadow-sm border-b border-border" 
+          : "bg-white/70 backdrop-blur-md"
       }`}
     >
       <div className="container mx-auto px-6">
         <div className="flex h-20 items-center justify-between">
           {/* Logo */}
-          <Link to="/" className="flex items-center gap-3 group">
-            <div className="relative">
-              <Droplet 
-                className="h-8 w-8 text-primary transition-all duration-300 group-hover:scale-110 group-hover:drop-shadow-[0_0_8px_rgba(239,68,68,0.6)]" 
-                fill="currentColor" 
-              />
-            </div>
-            <span className="font-bold text-2xl bg-gradient-to-r from-primary to-primary-glow bg-clip-text text-transparent">
-              BloodSync
+          <Link to="/" className="flex items-center gap-2.5 group">
+            <Droplet className="h-7 w-7 text-primary group-hover:scale-110 transition-transform" />
+            <span className="text-2xl font-bold text-foreground tracking-tight">
+              BloodBond
             </span>
           </Link>
 
           {/* Navigation Links */}
-          <div className="hidden md:flex items-center gap-1">
-            {[
-              { to: "/", label: "Home" },
-              { to: "/find-blood", label: "Find Blood" },
-              { to: "/donate", label: "Donate" },
-              { to: "/emergency", label: "Emergency" },
-              { to: "/stories", label: "Stories" },
-              { to: "/about", label: "About" },
-            ].map((link) => (
-              <Link
-                key={link.to}
-                to={link.to}
-                className="px-4 py-2 text-sm font-semibold text-foreground/80 hover:text-primary transition-all duration-300 rounded-lg hover:bg-primary/5 relative group"
-              >
-                {link.label}
-                <span className="absolute bottom-0 left-1/2 -translate-x-1/2 w-0 h-0.5 bg-gradient-to-r from-primary to-primary-glow group-hover:w-3/4 transition-all duration-300" />
-              </Link>
-            ))}
+          <div className="hidden md:flex items-center gap-10">
+            <Link to="/" className="relative text-foreground/70 hover:text-foreground font-medium transition-colors text-sm tracking-wide after:content-[''] after:absolute after:w-full after:scale-x-0 after:h-0.5 after:bottom-[-4px] after:left-0 after:bg-primary after:origin-bottom-right after:transition-transform after:duration-300 hover:after:scale-x-100 hover:after:origin-bottom-left">
+              Home
+            </Link>
+            <Link to="/find-blood" className="relative text-foreground/70 hover:text-foreground font-medium transition-colors text-sm tracking-wide after:content-[''] after:absolute after:w-full after:scale-x-0 after:h-0.5 after:bottom-[-4px] after:left-0 after:bg-primary after:origin-bottom-right after:transition-transform after:duration-300 hover:after:scale-x-100 hover:after:origin-bottom-left">
+              Find Blood
+            </Link>
+            <Link to="/donate" className="relative text-foreground/70 hover:text-foreground font-medium transition-colors text-sm tracking-wide after:content-[''] after:absolute after:w-full after:scale-x-0 after:h-0.5 after:bottom-[-4px] after:left-0 after:bg-primary after:origin-bottom-right after:transition-transform after:duration-300 hover:after:scale-x-100 hover:after:origin-bottom-left">
+              Donate
+            </Link>
+            <Link to="/stories" className="relative text-foreground/70 hover:text-foreground font-medium transition-colors text-sm tracking-wide after:content-[''] after:absolute after:w-full after:scale-x-0 after:h-0.5 after:bottom-[-4px] after:left-0 after:bg-primary after:origin-bottom-right after:transition-transform after:duration-300 hover:after:scale-x-100 hover:after:origin-bottom-left">
+              Stories
+            </Link>
+            <Link to="/about" className="relative text-foreground/70 hover:text-foreground font-medium transition-colors text-sm tracking-wide after:content-[''] after:absolute after:w-full after:scale-x-0 after:h-0.5 after:bottom-[-4px] after:left-0 after:bg-primary after:origin-bottom-right after:transition-transform after:duration-300 hover:after:scale-x-100 hover:after:origin-bottom-left">
+              About
+            </Link>
+            <Link to="/emergency" className="relative text-destructive/80 hover:text-destructive font-semibold transition-colors text-sm tracking-wide after:content-[''] after:absolute after:w-full after:scale-x-0 after:h-0.5 after:bottom-[-4px] after:left-0 after:bg-destructive after:origin-bottom-right after:transition-transform after:duration-300 hover:after:scale-x-100 hover:after:origin-bottom-left">
+              Emergency
+            </Link>
           </div>
 
           {/* Auth Buttons */}

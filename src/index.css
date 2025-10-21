@@ -6,69 +6,92 @@
 
 @layer base {
   :root {
-    /* Premium Color Palette */
-    --background: 0 0% 100%;
-    --foreground: 222 47% 11%;
-    
+    /* Core Colors - Sophisticated Healthcare Design System */
+    --background: 210 25% 98%;
+    --foreground: 215 25% 20%;
+
     --card: 0 0% 100%;
-    --card-foreground: 222 47% 11%;
-    
+    --card-foreground: 215 25% 20%;
+
     --popover: 0 0% 100%;
-    --popover-foreground: 222 47% 11%;
-    
-    --primary: 0 84% 60%;
+    --popover-foreground: 215 25% 20%;
+
+    /* Primary - Deep Ocean Blue */
+    --primary: 210 65% 45%;
     --primary-foreground: 0 0% 100%;
-    --primary-glow: 0 100% 70%;
-    
-    --secondary: 222 47% 11%;
-    --secondary-foreground: 0 0% 100%;
-    
-    --muted: 210 40% 96%;
-    --muted-foreground: 215 16% 47%;
-    
-    --accent: 0 84% 60%;
-    --accent-foreground: 0 0% 100%;
-    
+    --primary-glow: 210 75% 60%;
+    --primary-dark: 210 70% 35%;
+
+    /* Secondary - Warm Coral (subtle accent) */
+    --secondary: 15 75% 65%;
+    --secondary-foreground: 215 25% 20%;
+
+    /* Accent - Soft Teal */
+    --accent: 175 45% 55%;
+    --accent-foreground: 215 25% 20%;
+
     --destructive: 0 84% 60%;
-    --destructive-foreground: 0 0% 100%;
-    
-    --border: 214 32% 91%;
-    --input: 214 32% 91%;
-    --ring: 0 84% 60%;
-    
-    --radius: 1rem;
-    
+    --destructive-foreground: 0 0% 98%;
+
+    --muted: 210 20% 96%;
+    --muted-foreground: 215 16% 45%;
+
+    --border: 210 20% 90%;
+    --input: 210 20% 88%;
+    --ring: 210 65% 45%;
+
+    --radius: 0.75rem;
+
     /* Premium Gradients */
-    --gradient-primary: linear-gradient(135deg, hsl(0 84% 60%) 0%, hsl(0 100% 70%) 100%);
-    --gradient-secondary: linear-gradient(135deg, hsl(222 47% 11%) 0%, hsl(222 47% 20%) 100%);
-    --gradient-accent: linear-gradient(135deg, hsl(0 84% 60%) 0%, hsl(340 82% 52%) 100%);
-    --gradient-hero: linear-gradient(180deg, hsl(0 0% 100%) 0%, hsl(210 40% 98%) 100%);
-    --gradient-card: linear-gradient(135deg, hsl(0 0% 100%) 0%, hsl(210 40% 99%) 100%);
-    
-    /* Premium Shadows */
-    --shadow-sm: 0 2px 8px -2px hsl(222 47% 11% / 0.08);
-    --shadow-md: 0 4px 16px -4px hsl(222 47% 11% / 0.12);
-    --shadow-lg: 0 12px 32px -8px hsl(222 47% 11% / 0.16);
-    --shadow-xl: 0 20px 48px -12px hsl(222 47% 11% / 0.24);
-    --shadow-glow: 0 0 32px hsl(0 84% 60% / 0.3);
-    --shadow-glow-lg: 0 0 48px hsl(0 84% 60% / 0.4);
-    
-    /* Animations */
+    --gradient-primary: linear-gradient(135deg, hsl(210 65% 45%), hsl(210 75% 60%));
+    --gradient-secondary: linear-gradient(135deg, hsl(15 75% 65%), hsl(25 80% 70%));
+    --gradient-accent: linear-gradient(135deg, hsl(175 45% 55%), hsl(185 50% 65%));
+    --gradient-hero: linear-gradient(135deg, hsl(210 25% 98%), hsl(210 30% 96%));
+    --gradient-card: linear-gradient(180deg, hsl(0 0% 100%), hsl(210 20% 99%));
+
+    /* Sophisticated Shadows */
+    --shadow-sm: 0 2px 8px -2px hsl(210 20% 20% / 0.08);
+    --shadow-md: 0 4px 16px -4px hsl(210 20% 20% / 0.12);
+    --shadow-lg: 0 8px 24px -8px hsl(210 20% 20% / 0.16);
+    --shadow-xl: 0 16px 48px -12px hsl(210 20% 20% / 0.20);
+    --shadow-glow: 0 0 24px hsl(210 75% 60% / 0.25);
+    --shadow-glow-lg: 0 0 40px hsl(210 75% 60% / 0.35);
+
+    /* Smooth Transitions */
     --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     --transition-bounce: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
   }
   
   .dark {
-    --background: 222 47% 11%;
-    --foreground: 210 40% 98%;
-    --card: 222 47% 14%;
-    --card-foreground: 210 40% 98%;
-    --popover: 222 47% 14%;
-    --popover-foreground: 210 40% 98%;
-    --muted: 217 33% 17%;
-    --muted-foreground: 215 20% 65%;
-    --border: 217 33% 17%;
-    --input: 217 33% 17%;
+    --background: 215 25% 12%;
+    --foreground: 210 15% 92%;
+
+    --card: 215 22% 15%;
+    --card-foreground: 210 15% 92%;
+
+    --popover: 215 22% 15%;
+    --popover-foreground: 210 15% 92%;
+
+    --primary: 210 75% 60%;
+    --primary-foreground: 215 25% 12%;
+    --primary-glow: 210 80% 70%;
+    --primary-dark: 210 65% 45%;
+
+    --secondary: 15 65% 60%;
+    --secondary-foreground: 210 15% 92%;
+
+    --accent: 175 40% 50%;
+    --accent-foreground: 210 15% 92%;
+
+    --destructive: 0 62% 50%;
+    --destructive-foreground: 210 15% 92%;
+
+    --muted: 215 20% 20%;
+    --muted-foreground: 215 15% 65%;
+
+    --border: 215 20% 25%;
+    --input: 215 20% 25%;
+    --ring: 210 75% 60%;
   }
 }
 
@@ -78,28 +101,48 @@
   }
   
   body {
-    @apply bg-background text-foreground font-sans antialiased;
+    @apply bg-background text-foreground antialiased;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
     font-feature-settings: "rlig" 1, "calt" 1;
+    letter-spacing: -0.01em;
   }
-  
-  h1, h2, h3, h4, h5, h6 {
-    @apply font-bold tracking-tight;
-  }
-  
+
+  /* Typography Scale - Sophisticated & Readable */
   h1 {
-    @apply text-5xl md:text-6xl lg:text-7xl;
-    background: var(--gradient-primary);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
+    @apply text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight text-foreground;
+    line-height: 1.1;
+    letter-spacing: -0.02em;
   }
-  
+
   h2 {
-    @apply text-3xl md:text-4xl lg:text-5xl;
+    @apply text-4xl md:text-5xl font-bold tracking-tight text-foreground;
+    line-height: 1.2;
+    letter-spacing: -0.015em;
   }
-  
+
   h3 {
-    @apply text-2xl md:text-3xl lg:text-4xl;
+    @apply text-3xl md:text-4xl font-semibold tracking-tight text-foreground;
+    line-height: 1.3;
+  }
+
+  h4 {
+    @apply text-2xl md:text-3xl font-semibold tracking-tight text-foreground;
+    line-height: 1.4;
+  }
+
+  h5 {
+    @apply text-xl md:text-2xl font-semibold text-foreground;
+    line-height: 1.4;
+  }
+
+  h6 {
+    @apply text-lg md:text-xl font-semibold text-foreground;
+    line-height: 1.5;
+  }
+
+  p {
+    @apply text-base md:text-lg leading-relaxed;
+    letter-spacing: -0.01em;
   }
 }
 
