@@ -79,11 +79,11 @@ export const Hero = () => {
 
           {/* Right - Image */}
           <div className="relative fade-in-up lg:order-last" style={{ animationDelay: "0.2s" }}>
-            <div className="relative rounded-3xl overflow-hidden shadow-2xl">
+            <div className="relative rounded-3xl overflow-hidden shadow-2xl h-[600px]">
               <img 
                 src={heroImage} 
                 alt="Woman donating blood in modern medical facility" 
-                className="w-full h-auto object-cover"
+                className="w-full h-full object-cover object-center"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-primary/10 to-transparent" />
             </div>

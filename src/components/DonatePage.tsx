@@ -75,30 +75,34 @@ export const DonatePage = () => {
   };
 
   return (
-    <section className="py-24 px-4 bg-gradient-to-b from-muted/20 to-background">
-      <div className="container mx-auto max-w-2xl">
-        <div className="text-center mb-16">
-          <div className="inline-block mb-4 px-6 py-2 bg-primary/10 rounded-full border border-primary/20">
-            <span className="text-sm font-semibold text-primary">Join Our Mission</span>
+    <section className="py-24 px-4 bg-gradient-to-b from-background via-muted/10 to-background relative overflow-hidden">
+      {/* Background Elements */}
+      <div className="absolute top-20 left-10 w-[500px] h-[500px] bg-secondary/5 rounded-full blur-3xl -z-10" />
+      <div className="absolute bottom-20 right-10 w-[400px] h-[400px] bg-primary/5 rounded-full blur-3xl -z-10" />
+      
+      <div className="container mx-auto max-w-3xl">
+        <div className="text-center mb-16 space-y-6">
+          <div className="inline-flex items-center gap-2 px-6 py-3 bg-secondary/10 rounded-full border border-secondary/20 backdrop-blur-sm">
+            <span className="text-sm font-semibold text-secondary">Be a Hero</span>
           </div>
-          <h2 className="mb-6">Become a Donor</h2>
-          <p className="text-xl text-muted-foreground max-w-xl mx-auto leading-relaxed">
-            Register today and help save lives near you. It only takes 15 minutes to make a lifelong difference.
+          <h2 className="mb-6">Become a Lifesaver Today</h2>
+          <p className="text-xl text-muted-foreground max-w-2xl mx-auto leading-relaxed">
+            Join thousands of donors making a difference every day. Your donation can save up to three lives—register in minutes and start your journey as a hero.
           </p>
         </div>
 
-        <Card className="p-10 glass-card border-0">
-          <form onSubmit={handleSubmit} className="space-y-7">
+        <Card className="p-12 glass-card border-0 shadow-xl">
+          <form onSubmit={handleSubmit} className="space-y-8">
             <div className="space-y-3">
-              <Label htmlFor="blood-type" className="text-base font-semibold">Blood Type *</Label>
+              <Label htmlFor="blood-type" className="text-base font-semibold text-foreground">Blood Type *</Label>
               <Select value={bloodType} onValueChange={setBloodType} required>
-                <SelectTrigger id="blood-type" className="h-12 border-2">
+                <SelectTrigger id="blood-type" className="h-14 border-2 text-base">
                   <SelectValue placeholder="Select your blood type" />
                 </SelectTrigger>
                 <SelectContent>
                   {bloodTypes.map((type) => (
                     <SelectItem key={type} value={type}>
-                      <span className="font-semibold">{type}</span>
+                      <span className="font-semibold text-base">{type}</span>
                     </SelectItem>
                   ))}
                 </SelectContent>
@@ -106,19 +110,19 @@ export const DonatePage = () => {
             </div>
 
             <div className="space-y-3">
-              <Label htmlFor="city" className="text-base font-semibold">City *</Label>
+              <Label htmlFor="city" className="text-base font-semibold text-foreground">City *</Label>
               <Input
                 id="city"
                 placeholder="Enter your city"
                 value={city}
                 onChange={(e) => setCity(e.target.value)}
                 required
-                className="h-12 border-2"
+                className="h-14 border-2 text-base"
               />
             </div>
 
             <div className="space-y-3">
-              <Label htmlFor="phone" className="text-base font-semibold">Contact Number *</Label>
+              <Label htmlFor="phone" className="text-base font-semibold text-foreground">Contact Number *</Label>
               <Input
                 id="phone"
                 type="tel"
@@ -126,18 +130,18 @@ export const DonatePage = () => {
                 value={phone}
                 onChange={(e) => setPhone(e.target.value)}
                 required
-                className="h-12 border-2"
+                className="h-14 border-2 text-base"
               />
             </div>
 
             <div className="space-y-3">
-              <Label className="text-base font-semibold">Last Donation Date (Optional)</Label>
+              <Label className="text-base font-semibold text-foreground">Last Donation Date (Optional)</Label>
               <Popover>
                 <PopoverTrigger asChild>
                   <Button
                     variant="outline"
                     className={cn(
-                      "w-full h-12 justify-start text-left font-normal border-2",
+                      "w-full h-14 justify-start text-left font-normal border-2 text-base",
                       !lastDonation && "text-muted-foreground"
                     )}
                   >
@@ -158,9 +162,14 @@ export const DonatePage = () => {
               </Popover>
             </div>
 
-            <Button type="submit" className="w-full" size="xl" variant="glow">
-              Register as Donor
-            </Button>
+            <div className="pt-4">
+              <Button type="submit" className="w-full text-base font-semibold" size="xl" variant="glow">
+                Register as Donor
+              </Button>
+              <p className="text-center text-sm text-muted-foreground mt-4">
+                By registering, you join a community of heroes saving lives every day
+              </p>
+            </div>
           </form>
         </Card>
       </div>
