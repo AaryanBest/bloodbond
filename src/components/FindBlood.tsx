@@ -117,58 +117,51 @@ export const FindBlood = () => {
   const displayData = showResults && inventory && inventory.length > 0 ? inventory : mockupInventory;
 
   return (
-    <section className="py-24 px-4 bg-gradient-to-b from-background via-muted/10 to-background relative overflow-hidden">
+    <section className="py-20 px-4 bg-gradient-to-b from-background via-muted/10 to-background relative overflow-hidden">
       {/* Background Elements */}
       <div className="absolute top-20 right-10 w-[500px] h-[500px] bg-primary/5 rounded-full blur-3xl -z-10" />
       <div className="absolute bottom-40 left-10 w-[400px] h-[400px] bg-accent/5 rounded-full blur-3xl -z-10" />
       
       <div className="container mx-auto max-w-6xl">
-        <div className="text-center mb-16 space-y-6">
-          <div className="inline-flex items-center gap-2 px-6 py-3 bg-primary/10 rounded-full border border-primary/20 backdrop-blur-sm">
-            <MapPin className="w-4 h-4 text-primary" />
-            <span className="text-sm font-semibold text-primary">Instant Blood Locator</span>
-          </div>
-          <h2 className="mb-6">Find Blood When It Matters Most</h2>
-          <p className="text-xl text-muted-foreground max-w-2xl mx-auto leading-relaxed">
-            Access real-time blood availability across hundreds of hospitals and blood banks in your area
+        <div className="text-center mb-12 space-y-4">
+          <h1 className="text-5xl md:text-6xl font-bold tracking-tight">Find Blood Near You</h1>
+          <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+            Access real-time blood availability from verified hospitals and blood banks
           </p>
         </div>
 
         {/* Search Form */}
-        <Card className="p-10 mb-16 glass-card border-0 shadow-xl">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <Card className="p-8 mb-12 glass-card border-0 shadow-xl">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
             <div className="space-y-2">
-              <Label className="text-sm font-semibold text-muted-foreground">Blood Type</Label>
+              <Label className="text-sm font-medium">Blood Type</Label>
               <Select value={selectedBloodType} onValueChange={setSelectedBloodType}>
-                <SelectTrigger className="h-14 border-2 focus:border-primary text-base">
+                <SelectTrigger className="h-12">
                   <SelectValue placeholder="Select Blood Type" />
                 </SelectTrigger>
                 <SelectContent>
                   {bloodTypes.map((type) => (
-                    <SelectItem key={type} value={type}>
-                      <span className="font-semibold text-base">{type}</span>
-                    </SelectItem>
+                    <SelectItem key={type} value={type}>{type}</SelectItem>
                   ))}
                 </SelectContent>
               </Select>
             </div>
 
             <div className="space-y-2">
-              <Label className="text-sm font-semibold text-muted-foreground">Location</Label>
+              <Label className="text-sm font-medium">Location</Label>
               <Input
                 placeholder="Enter City"
                 value={city}
                 onChange={(e) => setCity(e.target.value)}
-                className="h-14 border-2 focus:border-primary text-base"
+                className="h-12"
               />
             </div>
 
             <div className="space-y-2">
-              <Label className="text-sm font-semibold text-muted-foreground opacity-0">Action</Label>
+              <Label className="text-sm font-medium opacity-0">Action</Label>
               <Button 
                 onClick={handleSearch} 
-                className="w-full h-14 text-base font-semibold"
-                size="lg"
+                className="w-full h-12"
                 variant="glow"
               >
                 Search Availability
@@ -179,50 +172,40 @@ export const FindBlood = () => {
 
         {/* Results - Always show mockup data */}
         <div className="space-y-6">
-          <div className="text-center mb-12">
-            <h3 className="text-4xl font-bold mb-3">
-              Available Blood Units Near You
-            </h3>
-            <p className="text-muted-foreground">Real-time inventory from verified medical facilities</p>
+          <div className="text-center mb-8">
+            <h2 className="text-3xl font-bold mb-2">Available Blood Units</h2>
+            <p className="text-muted-foreground">Real-time inventory from verified hospitals</p>
           </div>
           {displayData.map((item: any) => (
-            <Card key={item.id} className="p-10 card-hover border-0 bg-white/90 backdrop-blur-sm shadow-lg">
-              <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-8">
-                <div className="flex-1 space-y-5">
-                  <div>
-                    <h4 className="text-3xl font-bold mb-2 text-foreground">{item.hospitals.name}</h4>
-                    <div className="h-1 w-20 bg-gradient-to-r from-primary to-primary-glow rounded-full" />
-                  </div>
-                  <div className="space-y-3">
-                    <div className="flex items-start gap-4">
-                      <div className="p-3 bg-primary/10 rounded-xl">
-                        <MapPin className="h-5 w-5 text-primary" />
-                      </div>
+            <Card key={item.id} className="p-8 card-hover border-0 bg-white/90 backdrop-blur-sm shadow-lg">
+              <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-6">
+                <div className="flex-1 space-y-4">
+                  <h3 className="text-2xl font-bold text-foreground">{item.hospitals.name}</h3>
+                  <div className="space-y-2">
+                    <div className="flex items-start gap-3">
+                      <MapPin className="h-5 w-5 text-primary mt-0.5" />
                       <div>
-                        <p className="text-sm font-semibold text-muted-foreground mb-1">Location</p>
-                        <p className="text-lg font-medium text-foreground">{item.hospitals.address}, {item.hospitals.city}</p>
+                        <p className="text-sm text-muted-foreground">Location</p>
+                        <p className="font-medium">{item.hospitals.address}, {item.hospitals.city}</p>
                       </div>
                     </div>
-                    <div className="flex items-start gap-4">
-                      <div className="p-3 bg-accent/10 rounded-xl">
-                        <Phone className="h-5 w-5 text-accent" />
-                      </div>
+                    <div className="flex items-start gap-3">
+                      <Phone className="h-5 w-5 text-primary mt-0.5" />
                       <div>
-                        <p className="text-sm font-semibold text-muted-foreground mb-1">Contact</p>
-                        <p className="text-lg font-medium text-foreground">{item.hospitals.phone}</p>
+                        <p className="text-sm text-muted-foreground">Contact</p>
+                        <p className="font-medium">{item.hospitals.phone}</p>
                       </div>
                     </div>
                   </div>
                 </div>
                 <div className="text-center lg:text-right">
-                  <div className="inline-block p-8 bg-gradient-to-br from-primary/10 via-primary-glow/5 to-primary/10 rounded-3xl border-2 border-primary/20 shadow-lg">
-                    <p className="text-6xl font-bold bg-gradient-to-r from-primary via-primary-glow to-primary bg-clip-text text-transparent mb-3">
+                  <div className="inline-block p-6 bg-gradient-to-br from-primary/10 to-primary/5 rounded-2xl border border-primary/20">
+                    <p className="text-5xl font-bold text-primary mb-1">
                       {item.units_available}
                     </p>
-                    <p className="text-base font-bold text-muted-foreground uppercase tracking-wider">
-                      {item.blood_type} Units
+                    <p className="text-sm font-semibold text-muted-foreground">
+                      {item.blood_type} Units Available
                     </p>
-                    <p className="text-sm text-muted-foreground mt-2">Available Now</p>
                   </div>
                 </div>
               </div>

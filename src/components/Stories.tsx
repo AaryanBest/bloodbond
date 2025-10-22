@@ -49,42 +49,37 @@ export const Stories = () => {
   const displayStories = stories && stories.length > 0 ? stories : mockupStories;
 
   return (
-    <section className="py-24 px-4 bg-gradient-to-b from-background via-muted/10 to-background relative overflow-hidden">
+    <section className="py-20 px-4 bg-gradient-to-b from-background via-muted/10 to-background relative overflow-hidden">
       {/* Background Elements */}
       <div className="absolute top-40 left-20 w-[400px] h-[400px] bg-accent/5 rounded-full blur-3xl -z-10" />
       <div className="absolute bottom-20 right-20 w-[500px] h-[500px] bg-secondary/5 rounded-full blur-3xl -z-10" />
       
       <div className="container mx-auto max-w-6xl">
-        <div className="text-center mb-16 space-y-6">
-          <div className="inline-flex items-center gap-2 px-6 py-3 bg-accent/10 rounded-full border border-accent/20 backdrop-blur-sm">
-            <Heart className="w-4 h-4 text-accent" />
-            <span className="text-sm font-semibold text-accent">Stories of Hope</span>
-          </div>
-          <h2 className="mb-6">Real Stories. Real Impact.</h2>
-          <p className="text-xl text-muted-foreground max-w-2xl mx-auto leading-relaxed">
-            Every donation has a story. Hear from donors and recipients whose lives were forever changed through the gift of blood.
+        <div className="text-center mb-12 space-y-4">
+          <h1 className="text-5xl md:text-6xl font-bold tracking-tight">Stories That Inspire Change</h1>
+          <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+            Real stories from real people. Discover how blood donation has transformed lives
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {displayStories.map((story: any) => (
-            <Card key={story.id} className="p-8 card-hover border-0 bg-white/90 backdrop-blur-sm shadow-lg relative overflow-hidden group">
-              <div className="absolute top-6 right-6 opacity-10 group-hover:opacity-20 transition-opacity">
-                <Quote className="w-16 h-16 text-primary" />
+            <Card key={story.id} className="p-6 card-hover border-0 bg-white/90 backdrop-blur-sm shadow-lg relative overflow-hidden group">
+              <div className="absolute top-4 right-4 opacity-10 group-hover:opacity-20 transition-opacity">
+                <Quote className="w-12 h-12 text-primary" />
               </div>
               <div className="relative z-10">
-                <div className="mb-6">
-                  <div className="w-12 h-12 rounded-full bg-gradient-to-br from-primary/20 to-accent/20 flex items-center justify-center mb-4">
-                    <Heart className="w-6 h-6 text-primary" />
+                <div className="mb-4">
+                  <div className="w-10 h-10 rounded-full bg-gradient-to-br from-primary/20 to-accent/20 flex items-center justify-center mb-3">
+                    <Heart className="w-5 h-5 text-primary" />
                   </div>
-                  <h3 className="text-2xl font-bold mb-3 text-foreground">{story.title}</h3>
-                  <div className="h-1 w-16 bg-gradient-to-r from-primary to-accent rounded-full mb-4" />
+                  <h2 className="text-xl font-bold mb-2 text-foreground">{story.title}</h2>
                 </div>
-                <p className="text-muted-foreground leading-relaxed mb-6">
+                <p className="text-muted-foreground leading-relaxed text-sm mb-4">
                   {story.content}
                 </p>
-                <div className="pt-4 border-t border-border/50">
-                  <p className="text-sm font-bold text-primary">— {story.donor_name}</p>
+                <div className="pt-3 border-t border-border/50">
+                  <p className="text-xs font-semibold text-primary">— {story.donor_name}</p>
                 </div>
               </div>
             </Card>
